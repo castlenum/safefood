@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" href="/css/style.css"  rel="stylesheet">
+    <link th:href="@{/css/table.css}" href="/css/table.css"  rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+    <style>
+          .field-error {
+            boarder-color: #dc3545;
+            color: #dc3545;
+        }
+    </style>
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="frame">
+        <div class="header">
+            <div class="logo">safefood</div>
+            <div class="logo_2nd">Expiry Date Management Service</div>
+        </div>
+        <!-- //header -->
+        <div class="service_desc">
+            <h2> 사용 방법 </h2>
+            <img src="/images/food5.jpg" width="100%">
+            <div class="service_desc_text">
+                폼에 있는 값들을 모두 입력해 주세요.</br>
+                수량: 0보다 큰 수를 입력해 주세요.</br>
+                단위: 숫자가 아닌 값을 입력해 주세요.</br>
+                유통기한: 유통기한이 지나지 않은 식품을 등록해 주세요.
+                알람 여부를 선택하시어, 메일을 받을지 받지 않을지를 결정할 수 있어요.</br>
+                알람을 받으실 경우, 식품 종류와 저장 방식에 따라 적절한 날짜와 시간에 메일을 보내 드립니다.
+            </div>
+        </div>
+        <!-- //service_desc -->
+        <div class="log_sign">
+            <h2>식품 등록 폼</h2>
+            <form action="food.html" th:action th:object="${food}" method="post">
+                <div>
+                    <input type="text" th:field="*{foodName}" th:errorclass="field-error" class="form-control" placeholder="식품명">
+                </div>
+                <div>
+                    <input type="text" th:field="*{quantity}" th:errorclass="field-error" class="form-control" placeholder="수량">
+                </div>
+                <div>
+                    <input type="text" th:field="*{quantityUnit}" th:errorclass="field-error" class="form-control" placeholder="단위">
+                </div>
+                <div>
+                    <input type="text" th:field="*{expDate}" th:errorclass="field-error" class="form-control" placeholder="YYYY-MM-DD">
+                    <div>
+                        <div class="field-error" th:errors="*{foodName}">상품명 오류</div>
+                        <div class="field-error" th:errors="*{quantity}">수량 오류</div>
+                        <div class="field-error" th:errors="*{quantityUnit}">단위 오류</div>
+                        <div class="field-error" th:errors="*{expDate}">유통기한 오류</div>
+                    </div>
+                </div>
+                <div style="color:white;">알람 여부</div>
+                <div>
+                    <div class="form-check">
+                        <input type="checkbox" id="alarm" th:field="*{alarm}" class="form-check-input">
+                        <label label for="alarm" class="form-check-label" style="position:relative;">
+                            <span style="color:white; vertical-align:top;">알림 받음</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <div style="color:white;">식품 종류</div>
+                    <div th:each="type : ${foodTypes}" class="form-check form-check-inline">
+                        <input type="radio" th:field="*{foodType}" th:errorclass="field-error" th:value="${type.name()}" class="form-check-input">
+                        <label th:for="${#ids.prev('foodType')}" class="form-check-label" style="position:relative;">
+                            <span style="color:white; vertical-align:top;" th:text="${type.description}"></span>
+                        </label>
+                    </div>
+                    <div class="field-error" th:errors="*{foodType}">
+                        식품 종류 오류
+                    </div>
+                </div>
+                <!-- SELECT -->
+                <div>
+                    <div style="color:white;">저장 방식</div>
+                    <select th:field="*{storageCode}" th:errorclass="field-error" class="form-select">
+                        <option value="">==저장 방식 선택==</option>
+                        <option th:each="storageCode : ${storageCodes}" th:value="${storageCode.name()}"
+                                th:text="${storageCode.description}">FAST</option>
+                    </select>
+                </div>
+                <div class="field-error" th:errors="*{storageCode}">
+                    저장 방식 오류
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <button class="w-100 btn btn-primary btn-lg" type="submit">식품 등록</button>
+                    </div>
+                    <div class="col">
+                        <button class="w-100 btn btn-secondary btn-lg" onclick="location.href='foods.html'" th:onclick="|location.href='@{/}'|" type="button">취소</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>

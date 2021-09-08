@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
+  <link th:href="@{/css/style.css}" href="/css/style.css"  rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+      <div class="header">
+        <div class="logo">safefood</div>
+        <div class="logo_2nd">Expiry Date Management Service</div>
+      </div><!-- /header -->
+      <div class="service_desc">
+        <img src="/images/food5.jpg" width="100%">
+        <div class="service_desc_text">
+          <h2 th:text="|${member.name}님 환영합니다.|">로그인 사용자 이름></h2>제 서비스에 로그인이라도 해 주셔서 감사합니다(_ _),,
+          <button class="w-100 btn btn-dark btn-lg"  th:onclick="|location.href='@{/withdraw}'|" type="submit">
+            회원 탈퇴
+          </button>
+        </div><!-- /service_desc_text -->
+      </div><!-- /service_desc -->
+      <div class="log_sign">
+        <h2>등록한 식품 리스트</h2>
+        <div style="overflow-y:scroll; max-height: 300px;">
+          <table style="table-layout:fixed; width:100%; text-align:center;">
+            <thead style="background: gray;">
+              <tr><th>식품명</th><th>수량</th><th>단위</th><th>유통기한</th><th>알림 여부</th></tr>
+            </thead>
+            <tbody style="background-color:white; opacity: 0.5;">
+              <tr th:each="food : ${foods}" >
+                <td><a href="food.html" th:href="@{|/form/foods/${food.id}|}" th:text="${food.foodName}">식품명</a></td>
+                <td th:text="${food.quantity}" style="font-weight: bold">1</td>
+                <td th:text="${food.quantityUnit}" style=" font-weight: bold">개</td>
+                <td th:text="${food.expDate}" style=" font-weight: bold"></td>
+                <td th:text="${food.alarm}? 'O' : 'X'" style="font-weight: bold">O</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row">
+            <div class="col">
+              <button class="w-100 btn btn-secondary btn-lg" type="button" th:onclick="|location.href='@{/form/foods/add}'|">
+                식품 등록
+              </button>
+            </div><!-- /col -->
+            <div class="col">
+              <form th:action="@{/logout}" method="post">
+                <button class="w-100 btn btn-dark btn-lg" onclick="location.href='foods.html'" type="submit">
+                  로그아웃
+                </button>
+              </form>
+            </div><!-- /col -->
+          </div><!-- /row -->
+        </div><!-- /table_form -->
+      </div><!-- /log_sign -->
+  </div><!-- /container -->
+</body>
+</html>

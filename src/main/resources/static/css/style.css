@@ -1,0 +1,205 @@
+*{
+  font-family: 'Noto Sans KR', sans-serif;
+  list-style: none;
+  text-decoration: none;
+  border-collapse: collapse;
+  margin:0px;
+  padding: 0px;
+  color: #000;
+}
+h1 {
+    color:white;
+    text-align:center;
+    font-size: 2.0rem;
+    font-weight: bold;
+
+
+}
+h2 {
+    color:white;
+    text-align:center;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}
+body {
+  height: 100vh;
+  background-image: url("../../images/food11.jpg");
+  background-repeat:no-repeat;
+  background-size: cover;
+}
+.frame {
+  width: 95%;
+  height:auto;
+  margin: 0 auto;
+
+}
+
+.header {
+  padding:1em 1em;
+  text-align: center;
+
+}
+
+.logo {
+  font-size: 5.0rem;
+  font-weight: bold;
+  display: inline-block;
+  color:white;
+  text-align:center;
+}
+
+.logo_2nd {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color:white;
+  text-align:center;
+}
+
+.container {
+  width:95%;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  justify-content: center;
+}
+.service_desc {
+  float: left;
+  width: 35%;
+}
+.service_desc_text {
+    background: gray;
+    color:white;
+}
+
+
+.log_sign {
+  float: right;
+  width: 55%;
+  max-height: 60%;
+  align-items: center;
+}
+.log_in_form {
+    display: flex;
+    align-items: center;
+    position:center;
+    flex-direction: column;
+}
+
+.input-box{
+    position:relative;
+    margin-bottom:0.5em;
+
+}
+
+.input-box > input{
+    background:transparent;
+    border:none;
+    text-alignL center;
+    border-bottom: solid 1px #ccc;
+    padding:1em 0em 1em 0em;
+    color: white;
+}
+
+input::placeholder{
+    color:transparent;
+}
+
+input:placeholder-shown + label{
+    color:#aaa;
+    font-size:1rem;
+    top:1rem;
+}
+
+input:focus + label, label{
+    color:#8aa1a1;
+    font-size:10pt;
+    pointer-events: none;
+    position: absolute;
+    left:0px; top:0px;
+    transition: all 0.2s ease ;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+}
+
+input:focus, input:not(:placeholder-shown){
+    border-bottom: solid 1px;
+    outline:none;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    --c: white;
+    color: var(--c);
+    font-size: 16px;
+    border: 0.3em solid var(--c);
+    border-radius: 0.5em;
+    width: 12em;
+    height: 3em;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: sans-serif;
+    letter-spacing: 0.1em;
+    text-align: center;
+    line-height: 3em;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: 0.5s;
+}
+
+nav ul li span {
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    background-color: var(--c);
+    transform: translateY(150%);
+    border-radius: 50%;
+    left: calc((var(--n) - 1) * 25%);
+    transition: 0.5s;
+    transition-delay: calc((var(--n) - 1) * 0.1s);
+    z-index: -1;
+}
+
+nav ul li:hover {
+    color: black;
+}
+
+nav ul li:hover span {
+    transform: translateY(0) scale(2);
+}
+
+nav ul li span:nth-child(1) {
+    --n: 1;
+}
+
+nav ul li span:nth-child(2) {
+    --n: 2;
+}
+
+nav ul li span:nth-child(3) {
+    --n: 3;
+}
+
+nav ul li span:nth-child(4) {
+    --n: 4;
+}
+
+nav ul li :img {
+    margin: 0 auto;
+    padding: 0 auto;
+}
+
+
+
+
+
+
+
+

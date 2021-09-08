@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <link th:href="@{/css/style.css}" href="/css/style.css"  rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+</head>
+<div class="frame">
+  <div class="header">
+    <div class="logo">safefood</div>
+    <div class="logo_2nd">Expiry Date Management Service</div>
+  </div>
+  <!-- //header -->
+  <div class="container">
+    <div class="service_desc">
+      <h1>service</h1>
+      <img src="/images/food2.jpg" width="100%">
+      <div class="service_desc_text">
+        &nbsp;냉장고에서 유통기한이 지난 음식을 발견하면 어떻게 하시나요?<br>
+        한국보건산업진흥원이 조사한 결과에 따르면 “유통기한 지난 음식, 먹지 않고 버리셨나요?”의 질문에 ‘그렇다’가 56.4%. ‘아니다’가 33.4% 라고 나타났습니다.
+        한국소비자원 연구 결과에 따르면 표기된 보관 방법을 준수할 경우 유통기한 대비 크림빵은 2일, 생면은 9일, 계란은 25일, 액상커피는 30일, 우유는 45일, 슬라이스 치즈는 70일까지 섭취가 가능하다고 합니다.<br>
+        &nbsp;그렇다 해도 찜찜한 것은 어쩔 수 없잖아요? 그래서 준비했습니다. safefood는 당신이 등록한 음식의 유통기한을 적당한 때에 상기시켜 주어, 당신의 돈이 낭비되는 것을 방지해 줍니다. 지금 바로 등록하세요.
+      </div>
+    </div>
+    <!-- //service_desc -->
+    <div class="log_sign">
+      <h1>로그인 | 회원 가입</h1>
+
+      <div class="log_in_form">
+          <nav>
+            <ul>
+              <li type="submit" th:onclick="|location.href='@{/login}'|" >
+                로그인
+                <span></span><span></span><span></span><span></span>
+              </li>
+            </ul>
+          </nav>
+        <nav>
+          <ul>
+            <li type="submit" href="/oauth2/authorization/naver" >
+              <img src="/images/login.png" width="100%" height="100%">
+            </li>
+            <li type="submit" th:onclick="|location.href='@{/members/add}'|">
+              회원가입
+              <span></span><span></span><span></span><span></span>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+</html>

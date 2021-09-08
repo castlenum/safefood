@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" href="/css/style.css"  rel="stylesheet">
+    <link th:href="@{/css/table.css}" href="/css/table.css"  rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="frame">
+        <div class="header">
+            <div class="logo">safefood</div>
+            <div class="logo_2nd">Expiry Date Management Service</div>
+        </div>
+        <!-- //header -->
+        <div class="service_desc">
+            <h2> 사용 방법 </h2>
+            <img src="/images/food12.jpg" width="100%">
+            <div class="service_desc_text">
+                여기에서 식품의 자세한 정보를 확인할 수 있어요.</br>
+                식품을 수정하려면 '식품 수정'버튼을 눌러 주세요.
+            </div>
+        </div>
+        <!-- //service_desc -->
+        <div class="log_sign">
+            <h2>식품 정보 상세</h2>
+            <!-- 추가 -->
+            <h2 th:if="${param.status}" th:text="'저장 완료'"></h2>
+            <div>
+                <label for="foodName">식품명</label>
+                <input type="text" id="foodName" name="foodName" class="form-control" value="식품A" th:value="${food.foodName}" readonly>
+            </div>
+            <div>
+                <label for="quantity">수량</label>
+                <input type="text" id="quantity" name="quantity" class="form-control" value="10" th:value="${food.quantity}" readonly>
+            </div>
+            <div>
+                <label for="quantityUnit">단위</label>
+                <input type="text" id="quantityUnit" name="quantityUnit" class="form-control" value="10000" th:value="${food.quantityUnit}" readonly>
+            </div>
+            <div>
+                <label for="expDate">유통기한</label>
+                <input type="text" id="expDate" name="expDate" class="form-control" value="2021.01.01" th:value="${food.expDate}" readonly>
+            </div>
+
+            <!-- single checkbox -->
+            <div style="color:white;">알람 여부</div>
+            <div>
+                <div class="form-check">
+                    <input type="checkbox" id="alarm" th:field="${food.alarm}" class="form-check-input" disabled>
+                    <label for="alarm" class="form-check-label"style="position:relative;">
+                        <span style="color:white; vertical-align:top;">알림 받음</span>
+                    </label>
+                </div>
+            </div>
+            <div>
+                <div style="color:white;">식품 종류</div>
+                <div th:each="type : ${foodTypes}" class="form-check form-check-inline">
+                    <input type="radio" th:field="${food.foodType}" th:value="${type.name()}" class="form-check-input" disabled>
+                    <label th:for="${#ids.prev('foodType')}" style="position:relative;" class="form-check-label">
+                        <span style="color:white; vertical-align:top;" th:text="${type.description}"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- SELECT -->
+            <div>
+                <div style="color:white;">저장 방식</div>
+                <select th:field="${food.storageCode}" class="form-select" disabled>
+                    <option value="">==저장 방식 선택==</option>
+                    <option th:each="storageCode : ${storageCodes}" th:value="${storageCode.name()}"
+                            th:text="${storageCode.description}">FAST</option>
+                </select>
+            </div>
+            <hr class="my-4">
+
+            <div class="row">
+                <div class="col">
+                    <button class="w-100 btn btn-primary btn-lg" onclick="location.href='editForm.html'"
+                            th:onclick="|location.href='@{/form/foods/{foodId}/edit(foodId=${food.id})}'|"
+                            type="button">식품 수정</button>
+                </div>
+                <div class="col">
+                    <button class="w-100 btn btn-secondary btn-lg"
+                            onclick="location.href='foods.html'"
+                            th:onclick="|location.href='@{/}'|"
+                            type="button">뒤로가기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>
